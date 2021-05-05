@@ -15,16 +15,14 @@ public class NewsViewModel extends AndroidViewModel {
     final String API_KEY = "ed3e7aecf8094abeada85a12579cbf47";
     private NewsRepository newsRepository;
     private LiveData<Headlines> headlinesLiveData;
-    String country ="in";
 
     public NewsViewModel(@NonNull Application application) {
         super(application);
-
-        newsRepository = new NewsRepository();
-        this.headlinesLiveData = newsRepository.getHeadLines(country, API_KEY);
     }
 
-    public LiveData<Headlines> getArticleResponseLiveData() {
+    public LiveData<Headlines> getArticleResponseLiveData(String country) {
+        newsRepository = new NewsRepository();
+        this.headlinesLiveData = newsRepository.getHeadLines(country, API_KEY);
         return headlinesLiveData;
     }
 }
